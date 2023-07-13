@@ -1,0 +1,20 @@
+#3.Enrich the dataset with stations_loc. It means you have to 
+#join the information from stations_loc to 
+#RMCAB_air_quality_sensor_data.csv to get the Latitude and 
+#Longitude into RMCAB_air_quality_sensor_data.csv
+
+import pandas as pd
+from pandasql import sqldf
+
+table1 = pd.read_csv('RMCAB_air_quality_sensor_data.csv')
+table2 = pd.read_csv('stations_loc.csv')
+
+consult = '''
+SELECT tabla1.*, tabla2.Latitud, tabla2.Longitud
+FROM tabla1
+INNER JOIN tabla2 ON tabla1.Station = tabla2.Sigla
+'''
+
+final_table = sqldf(consult, locals())
+
+print(final_table)
