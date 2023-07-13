@@ -1,0 +1,15 @@
+#2.Calculate the mean of the values per each column and tell us What 
+#if you calculate the mean keeping or no the missing values.
+
+import pandas as pd
+
+column={'PM10','PM2.5','NO','NO2','NOX','CO','OZONO'}
+mean={}
+
+data = pd.read_csv('RMCAB_air_quality_sensor_data.csv')
+for col in column:
+    mean[col] = data[col].mean()
+
+print("Mean of each column:")
+for col, value in mean.items():
+    print(f"{col}: {value}")
