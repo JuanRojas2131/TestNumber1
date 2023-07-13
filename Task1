@@ -1,0 +1,17 @@
+#1.Load RMCAB_air_quality_sensor_data.csv and tell us the 
+#number of missing values in this dataset for each column.
+import csv
+
+columns_count = {}
+with open('RMCAB_air_quality_sensor_data.csv', 'r') as file:
+    reader_csv = csv.reader(file)
+    nam_column = next(reader_csv)
+    for column in nam_column:
+        columns_count[column] = 0
+    for row in reader_csv:
+        for index, valor_column in enumerate(row):
+            if valor_column == '':
+                actual_column = nam_column[index]
+                columns_count[actual_column] += 1
+for column, count in columns_count.items():
+    print("In the", column, "column lack" ,count,"values")
